@@ -23,6 +23,8 @@ breweries %>% group_by(State) %>% summarise(count = n_distinct(Brew_ID))
 mergeddf <- merge(beers, breweries, by.x=c("Brewery_id"),
                   by.y=c("Brew_ID"))
 
+range(mergeddf$ABV, na.rm= T)
+median(mergeddf$ABV, na.rm=T)
 
 mergeddf[rowSums(is.na(mergeddf)) == 0,]
 
@@ -43,7 +45,6 @@ colnames(mergeddf)[colSums(is.na(mergeddf)) > 0]
 
 colnames(mergeddf)[colSums(is.na(mergeddf)) > 0]
 
-mergeddf %>% ggplot(mapping = aes(x = ))
 
 qqnorm(y = mergeddf$ABV)
 qqline(y = mergeddf$ABV)
@@ -53,9 +54,10 @@ qqline(y = mergeddf$IBU)
 
 #both data sets are fairly normal so I will impute the columns with the mean
 
-mergeddf$ABV <- sapply(mergeddf$ABV, function(x) ifelse(is.na(x), median(X, na.rm = TRUE), x))
-mergeddf$IBU <- sapply(mergeddf$IBU, function(x) ifelse(is.na(x), median(X, na.rm = TRUE), x))
+mergeddf$ABV <- sapply(mergeddf$ABV, function(x) ifelse(is.na(x), median(mergeddf$ABV, na.rm = TRUE), x))
+mergeddf$IBU <- sapply(mergeddf$IBU, function(x) ifelse(is.na(x), median(mergeddf$IBU, na.rm = TRUE), x))
 
+range(mergeddf$ABV)
 
 #create new factor column that contains 5 levels of main beer classes
 #lager, ale, ipa, pilsner, malt, stout, other
@@ -170,6 +172,8 @@ for(i in 1:100) {
 
 max(accuracydf$accuracy, na.rm = TRUE)
 
+accuracydf[accuracydf$accuracy == 0.91,]
+
 summary_acc_df <- accuracydf %>% group_by(k) %>% summarise(mean_accuracy = mean(accuracy), 
                                                            mean_sensitivity = mean(sensitivity),
                                                            mean_specificity = mean(specificity, na.rm = T))
@@ -177,7 +181,7 @@ overall_mean_accuracy <- summary_acc_df[which.max(summary_acc_df$mean_accuracy),
 overall_mean_accuracy
 
 acc_df <- as.data.frame(summary_acc_df)
-
+accuracydf %>% ggplot(aes(x=k, y = accuracy)) + geom_point() + geom_smooth()
 
 str(acc_df)
 library(ggthemes)
@@ -186,3 +190,13 @@ acc_df %>% ggplot(aes(x = k, y = mean_accuracy)) + geom_point() + geom_smooth() 
 #run t-test two test if our overall_mean_accuracy is greater than 50
 
 
+?t.test
+
+t.test(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA",], ipa_ale_df)
+
+plot(density(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"]))
+
+hist(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"], col=rgb(1,0,0,0.5), xlim = range(.01,.15), main="Ale/IPA ABV Histogram")
+hist(ipa_ale_df$ABV[ipa_ale_df$bClass=="Ale"], col=rgb(0,0,1,0.5), add=T)
+
+?hist
