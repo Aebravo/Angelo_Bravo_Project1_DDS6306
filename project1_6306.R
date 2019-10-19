@@ -196,7 +196,18 @@ t.test(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA",], ipa_ale_df)
 
 plot(density(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"]))
 
-hist(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"], col=rgb(1,0,0,0.5), xlim = range(.01,.15), main="Ale/IPA ABV Histogram")
+hist(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"], col=rgb(1,0,0,0.5), xlim = range(.01,.15), main="Ale and IPA ABV Histogram",
+     xlab = "ABV", ylab = "Count")
 hist(ipa_ale_df$ABV[ipa_ale_df$bClass=="Ale"], col=rgb(0,0,1,0.5), add=T)
 
-?hist
+
+#run a two-sample to test if the groups have significantly different ABVs
+t.test(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"], ipa_ale_df$ABV[ipa_ale_df$bClass=="Ale"])
+
+#run a ttest on each group in order to determine a 95% CI of abv for each group
+t.test(ipa_ale_df$ABV[ipa_ale_df$bClass=="IPA"])
+t.test(ipa_ale_df$ABV[ipa_ale_df$bClass=="Ale"])
+
+
+
+
