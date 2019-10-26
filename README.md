@@ -5,5 +5,7 @@ The purpose of this analytics study is to determine the relationship of ABV and 
 Youtube Presentation Link: 
 
 The knit HMTL R-Markdown file can be found in: "Beer_Case_Study.pdf"
+
 The final powerpoint presentation can be found in: "Beer_Case_Study.pptx"
+
 The raw R code can bbe found in: "Project1_DDS6306.R"
