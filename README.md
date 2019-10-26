@@ -8,6 +8,8 @@ Youtube Presentation Link:
 
 The knit HMTL R-Markdown file can be found in: "Beer_Case_Study.pdf"
 
-The final powerpoint presentation can be found in: "Beer_Case_Study.pptx"
+The final powerpoint presentation can be found in: "Beer_Case_Study.pptx.zip"
 
 The raw R code can bbe found in: "Project1_DDS6306.R"
+
+The data we used can be found in: "Beers.csv", "Breweries.csv"
