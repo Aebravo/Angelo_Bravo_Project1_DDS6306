@@ -4,7 +4,7 @@ The purpose of this analytics study is to determine the relationship of ABV and 
 
 
 
-Youtube Presentation Link: 
+Youtube Presentation Link: https://www.youtube.com/watch?v=kzYN0Om0wr4&feature=youtu.be
 
 The knit HMTL R-Markdown file can be found in: "Beer_Case_Study.pdf"
 
